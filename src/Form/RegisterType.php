@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,9 +24,8 @@ class RegisterType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Saisir votre mot de passe',
-                'hash_property_path' => 'password',
                 'required' => true,
-                'empty_data' => ''
+                'empty_data' => '',
             ])
             ->add('lastname',TextType::class,[
                 'label' => 'Saisir votre nom',

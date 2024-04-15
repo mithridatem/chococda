@@ -3,5 +3,14 @@
 {% block title %}S'inscrire{% endblock %}
 
 {% block body %}
-    {{ form(formulaire) }}
+    
+    {{ form_start(formulaire) }}
+        {{ form_row(formulaire.firstname) }}
+        {{ form_row(formulaire.lastname) }}
+        {{ form_row(formulaire.password) }}
+        {{ form_row(formulaire.email) }}
+        {{ form_row(formulaire.image) }} 
+        {{ form_rest(formulaire) }}
+        <button type="submit">Ajouter</button>
+    {{ form_end(formulaire)}}
 {% endblock %}

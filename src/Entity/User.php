@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -17,6 +18,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\Email(
+        message: 'le mail : {{ value }} n\'est pas un email valide.',
+    )]
     private ?string $email = null;
 
     /**
@@ -29,12 +33,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Regex(
+        pattern: '/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{12,}/',
+        match: true,
+        message: 'Le mot de passe doit contenir des lettres min, maj, nombre et 12 caractères min',
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit avoir au minimum {{ limit }} de caractères de long',
+        maxMessage: 'Le nom doit avoir au maximu {{ limit }} charactères de long',
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le prénom doit avoir au minimum {{ limit }} de caractères de long',
+        maxMessage: 'Le prénom doit avoir au maximu {{ limit }} charactères de long',
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
