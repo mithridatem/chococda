@@ -39,7 +39,7 @@ class EmailService{
     }
     public function config() {
         //Server settings
-        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $this->mail->SMTPDebug = SMTP::DEBUG_OFF;
         $this->mail->isSMTP();
         $this->mail->Host       = $this->server;
         $this->mail->SMTPAuth   = true;

@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Service\EmailService;
 
 class RegisterController extends AbstractController
 {
     #[Route('/register', name: 'app_register_create')]
-    public function create(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hash
+    public function create(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hash, 
+        EmailService $emailService
     ): Response
     {
         $user = new User();
@@ -26,6 +28,8 @@ class RegisterController extends AbstractController
             $user->setPassword($hash->hashPassword($user,$user->getPassword()));
             $em->persist($user);
             $em->flush();
+            $body = $this->render('email/activation.html.twig', ["id"=>$user->getId()]);
+            $emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
         }
         return $this->render('register/index.html.twig', [
             'formulaire' => $form->createView()
