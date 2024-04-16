@@ -48,6 +48,9 @@ class ChocoblastService implements ServiceInterface
     public function findOneBy(int $id): object{
         return $this->chocoblastRepository->find($id)??throw new \Exception("Le chocoblast n'existe pas");
     }
+    public function findActive(): array{
+        return $this->chocoblastRepository->findBy(["status"=>true])??throw new \Exception("Le chocoblast n'existe pas");
+    }
     public function findAll(): array{
         return $this->chocoblastRepository->findAll()??throw new \Exception("Il n'y à aucun chocoblast en BDD");
     }

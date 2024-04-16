@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Service\ChocoblastService;
 use App\Form\ChocoblastType;
 use App\Entity\Chocoblast;
+use App\Repository\ChocoblastRepository;
 
 class ChocoblastController extends AbstractController
 {
@@ -41,10 +42,15 @@ class ChocoblastController extends AbstractController
     #[Route('/chocoblast/all', name:'app_chocoblast_all')]
     public function showAllChocoblast(ChocoblastService $chocoblastService):Response 
     {
-        $chocoblasts = $chocoblastService->findAll();
+        $chocoblasts = $chocoblastService->findActive();
 
         return $this->render('chocoblast/showAllChocoblast.html.twig', [
             'chocoblasts' => $chocoblasts,
         ]);
+    }
+
+    #[Route('/chocoblast/exemple', name:'app_chocoblast_exemple')]
+    public function exemple(ChocoblastRepository $chocoblastRepository) {
+        dd($chocoblastRepository->countChocoblast());
     }
 }

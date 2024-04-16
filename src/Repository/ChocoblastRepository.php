@@ -45,4 +45,15 @@ class ChocoblastRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+        public function countChocoblast(){
+            return $this->createQueryBuilder('c')
+                ->select(
+                    'NEW App\DTO\ExempleDTO(a.lastname, a.firstname, COUNT(a.id))'
+                )
+                ->innerJoin('c.author', 'a')
+                ->groupBy('a.id')
+                ->getQuery()
+                ->getResult();
+        }
 }

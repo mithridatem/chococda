@@ -62,4 +62,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findAllUserNotMe(string $email)  {
+        return $this->createQueryBuilder('u')
+            ->select('u.lastname','u.firstname')
+            ->setParameter('mail',$email)
+            ->andWhere('u.email != :mail')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -75,4 +75,9 @@ class RegisterController extends AbstractController
         //si il n'existe pas on regirige vers la création de compte
         return $this->redirectToRoute('app_register_create');
     }
+
+    #[Route('/register/test/{email}', name:'app_register_test')]
+    public function testEmail($email, UserRepository $userRepository) {
+        dd($userRepository->findAllUserNotMe($email));
+    }
 }
