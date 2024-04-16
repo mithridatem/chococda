@@ -13,15 +13,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Service\EmailService;
 use App\Service\FileUploadService;
+use App\Service\UserService;
 
 class RegisterController extends AbstractController
 {
     public function __construct(
-        private readonly EntityManagerInterface $em,
         private readonly UserPasswordHasherInterface $hash,
         private readonly EmailService $emailService,
-        private readonly UserRepository $userRepository,
-        private readonly FileUploadService $fileUploadService
+        private readonly FileUploadService $fileUploadService,
+        private readonly UserService $userService
     ) {
     }
     #[Route('/register', name: 'app_register_create')]
@@ -32,32 +32,24 @@ class RegisterController extends AbstractController
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //Test si le compte n'existe pas
-            if (!$this->userRepository->findOneBy(["email" => $user->getEmail()])) {
-                $user->setRoles(["ROLE_USER"]);
-                $user->setStatus(false);
-                $user->setPassword($this->hash->hashPassword($user, $user->getPassword()));
-                //récupération de l'image
-                $imageFile = $form->get('image')->getData();
-                //test si l'image existe
-                if ($imageFile) {
-                    //récupération du nom et déplacement de l'image
-                    $imageFileName = $this->fileUploadService->upload($imageFile);
-                    //set du nom de l'image
-                    $user->setImage($imageFileName);
-                }
-                $this->em->persist($user);
-                $this->em->flush();
-                $body = $this->render('email/activation.html.twig', ["id" => $user->getId()]);
-                $this->emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
-                $type = 'success';
-                $msg = 'Le compte ' . $user->getEmail() . ' a été ajouté en BDD';
+            $user->setRoles(["ROLE_USER"]);
+            $user->setStatus(false);
+            $user->setPassword($this->hash->hashPassword($user, $user->getPassword()));
+            //récupération de l'image
+            $imageFile = $form->get('image')->getData();
+            //test si l'image existe
+            if ($imageFile) {
+                //récupération du nom et déplacement de l'image
+                $imageFileName = $this->fileUploadService->upload($imageFile);
+                //set du nom de l'image
+                $user->setImage($imageFileName);
             }
-            //si le compte existe
-            else{
-                $type = 'danger';
-                $msg = 'Le compte ' . $user->getEmail() . ' existe déja';
-            }
+            $this->userService->create($user);    
+            $body = $this->render('email/activation.html.twig', ["id" => $user->getId()]);
+            $this->emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
+            $type = 'success';
+            $msg = 'Le compte ' . $user->getEmail() . ' a été ajouté en BDD';
+            
             $this->addFlash($type,$msg);
         }
         return $this->render('register/index.html.twig', [
