@@ -55,4 +55,8 @@ class UserService implements ServiceInterface
     {
         return $this->userRepository->findAll()??throw new \Exception('Il n\'y a pas de compte en BDD');
     }
+    public function findByEmail(string $email) :User {
+        return $this->userRepository->findOneBy(["email"=>$email]);
+    }
+
 }

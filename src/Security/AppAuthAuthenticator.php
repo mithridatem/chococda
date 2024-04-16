@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Service\UserService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,10 @@ class AppAuthAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        private UrlGeneratorInterface $urlGenerator,
+        private readonly UserService $userService
+    ) {
     }
 
     public function authenticate(Request $request): Passport
@@ -35,7 +38,8 @@ class AppAuthAuthenticator extends AbstractLoginFormAuthenticator
             new UserBadge($email),
             new PasswordCredentials($request->getPayload()->getString('password')),
             [
-                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),            ]
+                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
+            ]
         );
     }
 
@@ -44,10 +48,15 @@ class AppAuthAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        //récupérer le compte utilisateur (Objet User)
+        $user = $this->userService->findByEmail($request->getPayload()->getString('email'));
+        //tester si le status est à true
+        if($user->isStatus()) {
+            //redirection vers une page (vers la page login)
+            return new RedirectResponse($this->urlGenerator->generate('app_login'));
+        }
+        //redirige vers la page activation (vers la page d'activation)
+        return new RedirectResponse($this->urlGenerator->generate('app_register_activate', ["id"=>$user->getId()]));
     }
 
     protected function getLoginUrl(Request $request): string
