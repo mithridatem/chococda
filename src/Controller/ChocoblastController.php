@@ -33,7 +33,7 @@ class ChocoblastController extends AbstractController
                 $this->addFlash("danger", $th->getMessage());
             }
         }
-        return $this->render('chocoblast/index.html.twig', [
+        return $this->render('chocoblast/addChocoblast.html.twig', [
             'formulaire' => $form,
         ]);
     }

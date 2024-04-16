@@ -1,11 +1,14 @@
 # Installer le projet 
 1 - git clone url repo
-2 - créer les variables d'environnement dans le fichier .env
+
+2 - Créer les variables d'environnement dans le fichier **.env** :
+```yaml
 DATABASE_URL="mysql://login:mdp@127.0.0.1:3306/nom_db?serverVersion=10.4.32-MariaDB&charset=utf8mb4"
 SMTP_LOGIN=
 SMTP_PASSWORD=
 SMTP_SERVER=
 SMTP_PORT=
+```
 3 - se déplacer dans le dossier 
 ```bash
 cd nom_dossier
