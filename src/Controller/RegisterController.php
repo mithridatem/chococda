@@ -59,4 +59,20 @@ class RegisterController extends AbstractController
             'formulaire' => $form->createView()
         ]);
     }
+    
+    #[Route('/register/activate/{id}', name:'app_register_activate')]
+    public function activeAccount($id) {
+        //récupération du compte
+        $user = $this->userService->findOneBy($id);
+        //test si le compte existe
+        if($user) {
+            //modifier le status
+            $user->setStatus(true);
+            $this->userService->update($user);
+            //redirige vers la connexion
+            return $this->redirectToRoute('app_login');
+        }
+        //si il n'existe pas on regirige vers la création de compte
+        return $this->redirectToRoute('app_register_create');
+    }
 }

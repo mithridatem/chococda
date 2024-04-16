@@ -38,8 +38,9 @@ class UserService implements ServiceInterface
     }
     public function delete(int $id)
     {
-        if($this->userRepository->find($id)) {
-            $this->em->remove($this->userRepository->find($id));
+        $user = $this->userRepository->find($id);
+        if($user) {
+            $this->em->remove($user);
             $this->em->flush();
         }
         else {
