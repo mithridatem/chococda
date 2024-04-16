@@ -26,7 +26,7 @@ class RegisterController extends AbstractController
     }
     #[Route('/register', name: 'app_register_create')]
     public function create(
-        Request $request,
+        Request $request
     ): Response {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
