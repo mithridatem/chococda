@@ -29,9 +29,11 @@ class ChocoblastType extends AbstractType
             ] )
             ->add('author', EntityType::class, [
                 'class' => User::class,
+                'autocomplete' => true,
             ])
             ->add('target', EntityType::class, [
                 'class' => User::class,
+                'autocomplete' => true,
             ])
             ->add('ajouter', SubmitType::class)
         ;

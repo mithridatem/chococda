@@ -37,4 +37,14 @@ class ChocoblastController extends AbstractController
             'formulaire' => $form,
         ]);
     }
+
+    #[Route('/chocoblast/all', name:'app_chocoblast_all')]
+    public function showAllChocoblast(ChocoblastService $chocoblastService):Response 
+    {
+        $chocoblasts = $chocoblastService->findAll();
+
+        return $this->render('chocoblast/showAllChocoblast.html.twig', [
+            'chocoblasts' => $chocoblasts,
+        ]);
+    }
 }
