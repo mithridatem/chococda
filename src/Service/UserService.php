@@ -22,7 +22,9 @@ class UserService implements ServiceInterface
             $this->em->persist($object);
             $this->em->flush();
         }
-        throw new \Exception("Le compte existe déja");
+        else{
+            throw new \Exception("Le compte existe déja");
+        }
     }
     public function update(Object $object)
     {
@@ -30,7 +32,9 @@ class UserService implements ServiceInterface
             $this->em->persist($object);
             $this->em->flush();
         }
-        throw new \Exception("Le compte n'existe pas");
+        else{
+            throw new \Exception("Le compte n'existe pas");
+        }
     }
     public function delete(int $id)
     {
@@ -38,7 +42,9 @@ class UserService implements ServiceInterface
             $this->em->remove($this->userRepository->find($id));
             $this->em->flush();
         }
-        throw new \Exception("Le compte n'existe pas");
+        else {
+            throw new \Exception("Le compte n'existe pas");
+        }
     }
     public function findOneBy(int $id):Object
     {
