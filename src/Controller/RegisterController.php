@@ -86,4 +86,10 @@ class RegisterController extends AbstractController
     public function testEmail($email, UserRepository $userRepository) {
         dd($userRepository->findAllUserNotMe($email));
     }
+
+    //exemple récupérer l'utilisateur courant
+    #[Route('/register/test', name:'app_register_test')]
+    public function testUser():Response {
+        dd($this->getUser());
+    }
 }

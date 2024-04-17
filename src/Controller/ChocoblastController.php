@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Service\ChocoblastService;
 use App\Form\ChocoblastType;
 use App\Entity\Chocoblast;
-
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ChocoblastController extends AbstractController
 {
@@ -17,7 +17,7 @@ class ChocoblastController extends AbstractController
         private readonly ChocoblastService $chocoblastService
     ) {
     }
-
+    
     #[Route('/chocoblast/add', name: 'app_chocoblast_add')]
     public function create(
         Request $request,
@@ -54,6 +54,7 @@ class ChocoblastController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/chocoblast/all/inactive', name: 'app_chocoblast_all_inactive')]
     public function showAllChocoblastInactive(): Response
     {
@@ -64,6 +65,7 @@ class ChocoblastController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/chocoblast/active/{id}', name:'app_chocoblast_active')]
     public function activeChocoblast($id): Response 
     {
