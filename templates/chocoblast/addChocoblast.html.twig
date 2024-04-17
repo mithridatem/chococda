@@ -3,6 +3,7 @@
 {% block title %}Hello ChocoblastController!{% endblock %}
 
 {% block body %}
-    {{ form(formulaire) }}
+    <h3 class="chocoblast-title">Ajouter un chocoblast</h3>
+    {{ form(formulaire, {'attr': {'class':'choco' } } ) }}
     {% include "_components/_toast.html.twig" %}
 {% endblock %}

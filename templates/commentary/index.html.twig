@@ -1,0 +1,6 @@
+{% for comment in comments %}
+    <div class="comment">
+        <h4>{{ comment.content }}</h4>
+        <h5>Redigé le : {{ comment.createAt | date('d/m/Y') }}, {{ comment.author }}</h5>
+    </div>
+{% endfor %}

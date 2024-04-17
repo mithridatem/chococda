@@ -19,9 +19,9 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class,[
+            ->add('email', EmailType::class, [
                 'label' => 'Saisir votre email',
-                'required'=> true,
+                'required' => true,
                 'empty_data' => ''
             ])
             ->add('password', PasswordType::class, [
@@ -29,19 +29,19 @@ class RegisterType extends AbstractType
                 'required' => true,
                 'empty_data' => '',
             ])
-            ->add('lastname',TextType::class,[
+            ->add('lastname', TextType::class, [
                 'label' => 'Saisir votre nom',
-                'required'=> true,
+                'required' => true,
                 'empty_data' => ''
             ])
-            ->add('firstname', TextType::class,[
+            ->add('firstname', TextType::class, [
                 'label' => 'Saisir votre prénom',
-                'required'=> true,
+                'required' => true,
                 'empty_data' => ''
             ])
             ->add('image', FileType::class, [
                 'label' => 'Choisir une image',
-                'required'=> false,
+                'required' => false,
                 'empty_data' => '',
                 'constraints' => [
                     new File([
@@ -55,8 +55,7 @@ class RegisterType extends AbstractType
                         'mimeTypesMessage' => 'Merci d\'utiliser une image au format jpg, png ou bmp',
                     ])
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

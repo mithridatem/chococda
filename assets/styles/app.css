@@ -5,13 +5,13 @@ body{
     font-family: Roboto;
 }
 /* Formulaires */
-form{
+form.choco, form.register, form.login{
     display: flex;
     flex-direction: column;
     width: 40vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10vh;
+    margin-top: 8vh;
     gap: 20px;
     div{
         display: flex;
@@ -19,7 +19,6 @@ form{
         width: 40vw;
         label{
             font-size: 1.1rem;
-            text-align: center;
         }
         input{
             margin-top: 2vh;
@@ -36,6 +35,21 @@ form{
         align-self: flex-end;
         color:whitesmoke;
     }
+}
+form.login{
+    margin-top: 20vh;
+}
+form.choco{
+    margin-top: 2vh;
+    select, input[type="text"], input[type="date"]{
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        height: 4vh;
+    }
+}
+.chocoblast-title{
+    margin-top:15vh;
+    text-align: center;
 }
 /* Alert message */
 .alert{
@@ -77,4 +91,37 @@ nav>ul{
         text-decoration:none;
         color: whitesmoke;
     }
+}
+.choco-container{
+    display: flex;
+    width: 98vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    gap: 2vw;
+}
+.choco-title{
+    text-align: center;
+}
+.chocoblast{
+    padding: 1vw;
+    margin-top: 2vh;
+    width: 25vw;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: fit-content;
+    font-size: 0.9rem;
+    h5{
+        font-size: 0.8rem;
+    }
+}
+.comment-form{
+    padding: 1vw;
+    background-color: rgb(234, 234, 234);
+    border-radius: 20px;
 }
