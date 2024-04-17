@@ -3,13 +3,21 @@
 {% block title %}Liste des chocoblasts{% endblock %}
 
 {% block body %}
+    <h1>Liste des chocoblasts</h1>
     {% for chocoblast in chocoblasts %}
-        <div>
+        <div class="chocoblast">
             <h2>{{ chocoblast.title }}</h2>
             <p>Auteur : {{ chocoblast.author }}</p>
             <p>Cible  : {{ chocoblast.target }}</p>
-            <img src="/uploads/images/{{ chocoblast.target.image }}" alt="" width="50px">
+            <img src="/uploads/images/{{ chocoblast.target.image }}" alt=""width="50px">
             <p>Date : {{ chocoblast.createAt | date('d/m/Y') }}</p>
+            <div class="comments">
+                <h3>Liste des commentaires</h3>
+                {% if app.user.userIdentifier is defined %}
+                    <a href="/commentary/add/{{ chocoblast.id }}"><button>Ajouter un commentaire</button></a>
+                {% endif %}
+                <a href="/commentary/all/{{ chocoblast.id }}"><button>Afficher les commentaires</button></a>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

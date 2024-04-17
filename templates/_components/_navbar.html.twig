@@ -1,0 +1,14 @@
+<nav>
+    <ul>
+        <li><a href="/chocoblast/all">Home</a></li>
+        <li><a href="/chocoblast/all">Liste des chocoblasts</a></li>
+        {% if app.user.userIdentifier is defined %}
+        <li><a href="/chocoblast/add">Ajouter un chocoblast</a></li>
+        <li><a href="/chocoblast/all/inactive">Activer les chocoblasts</a></li>
+        <li><a href="/logout">Deconnexion</a></li>
+        {% else %}
+        <li><a href="/register">S'inscrire</a></li>
+        <li><a href="/login">Se connecter</a></li>    
+        {% endif %}
+    </ul>
+</nav>

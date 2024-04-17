@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 body{
+    margin: 0;
+    padding: 0;
     font-family: Roboto;
 }
+/* Formulaires */
 form{
     display: flex;
     flex-direction: column;
     width: 40vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25vh;
+    margin-top: 10vh;
     gap: 20px;
     div{
         display: flex;
@@ -58,4 +61,20 @@ form{
 .warning{
     background-color:rgb(242, 241, 193);
     color:orange;
+}
+/* Navbar*/
+nav>ul{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    height: 4vh;
+    background-color: rgb(34, 129, 224);
+    li{
+        list-style-type:none;
+    }
+    li>a{
+        text-decoration:none;
+        color: whitesmoke;
+    }
 }
