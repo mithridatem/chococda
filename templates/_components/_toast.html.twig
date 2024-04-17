@@ -1,0 +1,11 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        {% if label == "success" %}
+            <p class="alert success">{{ message }}</p>
+        {% elseif label == "warning" %}
+            <p class="alert warnig">{{ message }}</p>
+        {% elseif label == "danger" %}
+            <p class="alert danger">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endfor %}

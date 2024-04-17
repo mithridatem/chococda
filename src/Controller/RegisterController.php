@@ -44,14 +44,20 @@ class RegisterController extends AbstractController
                 //set du nom de l'image
                 $user->setImage($imageFileName);
             }
-            //ajout du compte utilisateur
-            $this->userService->create($user);
-            //construction du corp du mail  
-            $body = $this->render('email/activation.html.twig', ["id" => $user->getId()]);
-            //envoi du mail
-            $this->emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
-            $type = 'success';
-            $msg = 'Le compte ' . $user->getEmail() . ' a été ajouté en BDD';
+            try {
+                //ajout du compte utilisateur
+                $this->userService->create($user);
+                //construction du corp du mail  
+                $body = $this->render('email/activation.html.twig', ["id" => $user->getId()]);
+                //envoi du mail
+                $this->emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
+                $type = 'success';
+                $msg = 'Le compte ' . $user->getEmail() . ' a été ajouté en BDD';
+      
+            } catch (\Throwable $th) {
+                $msg = $th->getMessage();
+                $type = "danger";
+            }
             //affichage du message
             $this->addFlash($type,$msg);
         }

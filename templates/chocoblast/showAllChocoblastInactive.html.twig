@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des chocoblasts{% endblock %}
+
+{% block body %}
+    {% for chocoblast in chocoblasts %}
+        <div>
+            <h2>{{ chocoblast.title }}</h2>
+            <p>Auteur : {{ chocoblast.author }}</p>
+            <p>Cible  : {{ chocoblast.target }}</p>
+            <img src="/uploads/images/{{ chocoblast.target.image }}" alt="" width="50px">
+            <p>Date : {{ chocoblast.createAt | date('d/m/Y') }}</p>
+            <a href="/chocoblast/active/{{ chocoblast.id }}"><i class="fa-solid fa-check"></i></a>
+        </div>
+    {% endfor %}
+{% endblock %}

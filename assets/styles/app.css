@@ -14,16 +14,48 @@ form{
         display: flex;
         flex-direction: column;
         width: 40vw;
+        label{
+            font-size: 1.1rem;
+            text-align: center;
+        }
         input{
             margin-top: 2vh;
             height: 3vh;
         }
     }
     button[type="submit"]{
-        width: 10vw;
+        width: 15vw;
+        height: 4vh;
+        font-size: 1.2rem;
         background-color: rgb(18, 145, 224);
+        border-radius: 20px;
         border: 0;
-        justify-self: flex-end;
         align-self: flex-end;
+        color:whitesmoke;
     }
+}
+/* Alert message */
+.alert{
+    position: absolute;
+    bottom: 2vh;
+    left: 0;
+    height: 3vh;
+    width: 99vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 0.5vw;
+    font-size: 1.2rem;
+}
+.success{
+    background-color:rgb(200, 244, 201);
+    color: green;
+}
+.danger{
+    background-color:rgb(241, 193, 193);
+    color: red;
+}
+.warning{
+    background-color:rgb(242, 241, 193);
+    color:orange;
 }
