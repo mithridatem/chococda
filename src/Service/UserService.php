@@ -58,5 +58,4 @@ class UserService implements ServiceInterface
     public function findByEmail(string $email) :User {
         return $this->userRepository->findOneBy(["email"=>$email]);
     }
-
 }

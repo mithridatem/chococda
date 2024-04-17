@@ -5,13 +5,13 @@
 ```yaml
 DATABASE_URL="mysql://login:mdp@127.0.0.1:3306/nom_db?serverVersion=10.4.32-MariaDB&charset=utf8mb4"
 
-SMTP_LOGIN=
+LOGIN_SMTP=
 
-SMTP_PASSWORD=
+PASSWORD_SMTP=
 
-SMTP_SERVER=
+SERVER_SMTP=
 
-SMTP_PORT=
+PORT_SMTP=
 ```
 3 - se déplacer dans le dossier 
 ```bash
