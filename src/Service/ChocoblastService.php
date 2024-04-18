@@ -20,7 +20,7 @@ class ChocoblastService implements ServiceInterface
             $this->em->flush();
         }
         else{
-            throw new \Exception("Le chocoblast existe déja");
+            throw new \Exception("Le chocoblast existe deja");
         }
     }
 

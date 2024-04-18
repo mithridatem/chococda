@@ -33,11 +33,15 @@ class ChocoblastController extends AbstractController
             try {
                 //ajout du chocoblast en BDD
                 $chocoblast->setStatus(false);
+                $chocoblast->setAuthor($this->getUser());
                 $this->chocoblastService->create($chocoblast);
-                $this->addFlash("Success", "Le chocoblast a été ajouté");
+                $msg = "le chocoblast a ete ajoute";
+                $type = "success";
             } catch (\Throwable $th) {
-                $this->addFlash("danger", $th->getMessage());
+                $msg = $th->getMessage();
+                $type = "danger";
             }
+            $this->addFlash($type, $msg);
         }
         return $this->render('chocoblast/addChocoblast.html.twig', [
             'formulaire' => $form,

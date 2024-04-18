@@ -28,11 +28,6 @@ class ChocoblastType extends AbstractType
                 'html5' => true,
                 'required' => true
             ])
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'autocomplete' => true,
-                'label' => 'Sélectionner l\'auteur',
-            ])
             ->add('target', EntityType::class, [
                 'class' => User::class,
                 'autocomplete' => true,
