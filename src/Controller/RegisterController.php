@@ -52,7 +52,7 @@ class RegisterController extends AbstractController
                 //envoi du mail
                 $this->emailService->sendEmail($user->getEmail(), "Activation du compte", $body->getContent());
                 $type = 'success';
-                $msg = 'Le compte ' . $user->getEmail() . ' a été ajouté en BDD';
+                $msg = 'Le compte a ete ajoute';
       
             } catch (\Throwable $th) {
                 $msg = $th->getMessage();

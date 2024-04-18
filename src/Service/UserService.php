@@ -23,7 +23,7 @@ class UserService implements ServiceInterface
             $this->em->flush();
         }
         else{
-            throw new \Exception("Le compte existe déja");
+            throw new \Exception("Le compte existe deja");
         }
     }
     public function update(Object $object)
