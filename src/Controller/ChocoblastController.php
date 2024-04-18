@@ -17,7 +17,7 @@ class ChocoblastController extends AbstractController
         private readonly ChocoblastService $chocoblastService
     ) {
     }
-    
+
     #[Route('/chocoblast/add', name: 'app_chocoblast_add')]
     public function create(
         Request $request,
@@ -66,12 +66,22 @@ class ChocoblastController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/chocoblast/active/{id}', name:'app_chocoblast_active')]
-    public function activeChocoblast($id): Response 
+    #[Route('/chocoblast/active/{id}', name: 'app_chocoblast_active')]
+    public function activeChocoblast($id): Response
     {
         $chocoblast = $this->chocoblastService->findOneBy($id);
         $chocoblast->setStatus(true);
         $this->chocoblastService->update($chocoblast);
         return $this->redirectToRoute('app_chocoblast_all_inactive');
+    }
+
+    #[Route('/chocoblast/test', name: 'app_chocoblast_test')]
+    public function test(): Response
+    {
+        $topAuthor = $this->chocoblastService->getCountChocoblastAuthor();
+        $json = $this->json($topAuthor);
+        return $this->render('chocoblast/topAuthorChocoblast.html.twig', [
+            'topAuthor' => $json->getContent(),
+        ]);
     }
 }

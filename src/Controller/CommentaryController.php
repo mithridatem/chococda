@@ -40,6 +40,7 @@ class CommentaryController extends AbstractController
             //récupération de l'utilisateur connecté
             $user = $this->getUser();
             $comment->setAuthor($user);
+            $comment->setStatus(false);
             $comment->setChocoblast($this->chocoblastService->findOneBy($id));
             //ajout du commentaire en BDD
             $this->commentaryService->create($comment);

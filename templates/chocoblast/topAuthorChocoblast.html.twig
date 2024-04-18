@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Top Auteur chocoblast{% endblock %}
+
+{% block body %}
+    <div class="ct-chart"></div>
+    <script>
+        createChart(convertJson("{{topAuthor}}"));
+    </script>
+{% endblock %}
