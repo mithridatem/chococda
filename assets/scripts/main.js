@@ -3,7 +3,7 @@ function convertJson(data) {
 	return JSON.parse(data.replace(/&quot;/g, '"'));
 }
 //fonction pour construire un graphique
-function createChart(json) {
+function createChart(json, zone) {
 	//création des tableaux pour les labels et les scores
 	const labels = [];
 	const counts = [];
@@ -14,7 +14,7 @@ function createChart(json) {
 	});
 	//création du graphique
 	const graphique = new Chartist.Bar(
-		".ct-chart",
+		zone,
 		{
 			labels: labels,
 			series: counts,

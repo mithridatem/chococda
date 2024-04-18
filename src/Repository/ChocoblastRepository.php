@@ -58,12 +58,24 @@ class ChocoblastRepository extends ServiceEntityRepository
         }
 
         /**
-         * 
+         * @return TopChocoblastAuthorDTO[]
          */
         public function topChocoblastAuthor() {
             return $this->createQueryBuilder('c')
                 ->select('NEW App\DTO\TopChocoblastAuthorDTO(u.firstname, u.lastname, COUNT(u.id))')
                 ->innerJoin('c.author', 'u')
+                ->groupBy('u.id')
+                ->getQuery()
+                ->getResult();
+        }
+
+                /**
+         * @return TopChocoblastAuthorDTO[]
+         */
+        public function topChocoblastTarget() {
+            return $this->createQueryBuilder('c')
+                ->select('NEW App\DTO\TopChocoblastAuthorDTO(u.firstname, u.lastname, COUNT(u.id))')
+                ->innerJoin('c.target', 'u')
                 ->groupBy('u.id')
                 ->getQuery()
                 ->getResult();

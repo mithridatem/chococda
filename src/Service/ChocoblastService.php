@@ -58,4 +58,8 @@ class ChocoblastService implements ServiceInterface
     public function getCountChocoblastAuthor(): array {
         return $this->chocoblastRepository->topChocoblastAuthor();
     }
+
+    public function getCountChocoblastTarget(): array {
+        return $this->chocoblastRepository->topChocoblastTarget();
+    }
 }

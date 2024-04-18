@@ -75,13 +75,28 @@ class ChocoblastController extends AbstractController
         return $this->redirectToRoute('app_chocoblast_all_inactive');
     }
 
-    #[Route('/chocoblast/test', name: 'app_chocoblast_test')]
-    public function test(): Response
+    #[Route('/chocoblast/top/auteur', name:'app_chocoblast_top_auteur')]
+    public function topAuthor():Response
     {
         $topAuthor = $this->chocoblastService->getCountChocoblastAuthor();
         $json = $this->json($topAuthor);
-        return $this->render('chocoblast/topAuthorChocoblast.html.twig', [
-            'topAuthor' => $json->getContent(),
+        return $this->render('chocoblast/topAuteur.html.twig', [
+            'topAuthor'=> $json->getContent(),
         ]);
+    }
+
+    #[Route('/chocoblast/top/cible', name:'app_chocoblast_top_cible')]
+    public function topTarget():Response
+    {
+        $topTarget = $this->chocoblastService->getCountChocoblastTarget();
+        $json = $this->json($topTarget);
+        return $this->render('chocoblast/topTarget.html.twig', [
+            'topTarget'=> $json->getContent(),
+        ]);
+    }
+    #[Route('/chocoblast/top', name:'app_chocoblast_top')]
+    public function top():Response
+    {
+        return $this->render('chocoblast/topGraph.html.twig');
     }
 }
