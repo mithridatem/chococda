@@ -28,6 +28,7 @@ class RegisterType extends AbstractType
                 'label' => 'Saisir votre mot de passe',
                 'required' => true,
                 'empty_data' => '',
+                'toggle'=> true,
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Saisir votre nom',

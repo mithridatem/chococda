@@ -3,15 +3,17 @@
 {% block title %}S'inscrire{% endblock %}
 
 {% block body %}
+<turbo-frame id="the_frame_id">
     {{ form_start(formulaire, {'attr': {'class':'register' } } ) }}
         <h2>Ajouter un compte</h2>
         {{ form_row(formulaire.firstname) }}
         {{ form_row(formulaire.lastname) }}
-        {{ form_row(formulaire.password) }}
         {{ form_row(formulaire.email) }}
+        {{ form_row(formulaire.password) }}
         {{ form_row(formulaire.image) }} 
         {{ form_rest(formulaire) }}
         <button type="submit">S'inscrire</button>
     {{ form_end(formulaire)}}
     {% include "_components/_toast.html.twig" %}
+</turbo-frame>
 {% endblock %}
