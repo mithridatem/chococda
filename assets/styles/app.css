@@ -46,6 +46,9 @@ form.choco{
         margin-bottom: 2vh;
         height: 4vh;
     }
+    button[type="submit"]{
+        margin-top: 6vh;
+    }
 }
 .chocoblast-title{
     margin-top:15vh;
@@ -54,7 +57,7 @@ form.choco{
 /* Alert message */
 .alert{
     position: absolute;
-    bottom: 2vh;
+    bottom: 3vh;
     left: 0;
     height: 3vh;
     width: 99vw;

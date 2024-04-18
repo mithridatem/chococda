@@ -3,7 +3,9 @@
 {% block title %}Hello ChocoblastController!{% endblock %}
 
 {% block body %}
+<turbo-frame id="the_frame_id">
     <h3 class="chocoblast-title">Ajouter un chocoblast</h3>
     {{ form(formulaire, {'attr': {'class':'choco' } } ) }}
     {% include "_components/_toast.html.twig" %}
+</turbo-frame>
 {% endblock %}
