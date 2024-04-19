@@ -1,5 +1,5 @@
-describe('template spec', () => {
-  it('passes', () => {
+describe('inscription spec', () => {
+  it('ok', () => {
     cy.visit('https://127.0.0.1:8000/register')
     cy.get('#register_firstname').type("Mathieu")
     cy.get('#register_lastname').type("Mithridate")
@@ -9,7 +9,7 @@ describe('template spec', () => {
     cy.wait(2000)
     cy.get('p.alert').should('contain', "Le compte a ete ajoute")
   })
-  it('passes', () => {
+  it('doublon', () => {
     cy.visit('https://127.0.0.1:8000/register')
     cy.get('#register_firstname').type("Mathieu")
     cy.get('#register_lastname').type("Mithridate")

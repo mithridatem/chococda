@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
 
@@ -10,16 +10,14 @@
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
     <button class="btn btn-lg btn-primary" type="submit">
         Connexion
     </button>
 </form>
-<turbo-frame id="the_frame_id">
+<turbo-frame id="msg">
 {% include "_components/_toast.html.twig" %}
 </turbo-frame>
 {% endblock %}

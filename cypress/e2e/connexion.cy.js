@@ -1,0 +1,26 @@
+describe('connexion', () => {
+    it('ok', () => {
+        cy.visit('https://127.0.0.1:8000/login')
+        cy.get('#inputEmail').type("mathieu.mith@laposte.net")
+        cy.get('#inputPassword').type("Azertyuio1234")
+        cy.get('.btn').click()
+        cy.wait(1500)
+        cy.get('p.alert').should("contain", "connecte")
+    })
+    it('mail incorrect', () => {
+        cy.visit('https://127.0.0.1:8000/login')
+        cy.get('#inputEmail').type("mathieu.mith1288@laposte.net")
+        cy.get('#inputPassword').type("Azertyuio1234")
+        cy.get('.btn').click()
+        cy.wait(1500)
+        cy.get('p.alert').should("contain", "Le mail est invalide")
+    })
+    it('password incorrect', () => {
+        cy.visit('https://127.0.0.1:8000/login')
+        cy.get('#inputEmail').type("mathieu.mith1@laposte.net")
+        cy.get('#inputPassword').type("Azertyuio12344545554")
+        cy.get('.btn').click()
+        cy.wait(1500)
+        cy.get('p.alert').should("contain", "Le mot de passe est invalide")
+    })
+})
