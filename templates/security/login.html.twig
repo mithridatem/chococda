@@ -5,9 +5,6 @@
 {% block body %}
 
 <form class="login" method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
     <h2 class="h3 mb-3 font-weight-normal">Se connecter</h2>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
